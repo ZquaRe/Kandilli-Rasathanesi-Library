@@ -1,24 +1,37 @@
 <?php
+
+// Gerekli sınıf dosyasını dahil ediyoruz
 require_once 'src/class.earthquake.php';
 
-$Example = new earthquake();
+// Earthquake sınıfından bir nesne oluşturuyoruz
+$earthquake = new earthquake();
 
-foreach (json_decode($Example->Earth()) as $Earth) {
+// getEarthquakeData metodu ile deprem verilerini çekiyor ve JSON formatından PHP array formatına dönüştürüyoruz
+$data = json_decode($earthquake->getEarthquakeData());
 
-    echo 'Date: '.$Earth->Date.'<br>';
-    echo 'Time: '.$Earth->Time.'<br>';
-    echo 'Latitude: '.$Earth->Latitude.'<br>';
-    echo 'Longitude: '.$Earth->Longitude.'<br>';
-    echo 'Depth: '.$Earth->Depth.'<br>';
-    echo 'Md: '.$Earth->Md.'<br>';
-    echo 'Ml: '.$Earth->Ml.'<br>';
-    echo 'Mw: '.$Earth->Mw.'<br>';
-    echo 'Location: '.$Earth->Location.'<br>';
-    echo 'Revize: '.$Earth->Revize.'<br>';
+// Dönen veri üzerinde dönerek her bir deprem kaydını ekrana yazdırıyoruz
+foreach ($data as $record) {
+    echo 'Date: ' . $record->Date . '<br>';
+    echo 'Time: ' . $record->Time . '<br>';
+    echo 'Latitude: ' . $record->Latitude . '<br>';
+    echo 'Longitude: ' . $record->Longitude . '<br>';
+    echo 'Depth: ' . $record->Depth . '<br>';
+    echo 'Md: ' . $record->Md . '<br>';
+    echo 'Ml: ' . $record->Ml . '<br>';
+    echo 'Mw: ' . $record->Mw . '<br>';
+    echo 'Location: ' . $record->Location . '<br>';
+    echo 'Revize: ' . $record->Revize . '<br>';
     echo '<br/><br/>';
 }
 
 
-//Bütün verileri listeler
+// Tüm veriyi bir kere daha ekrana yazdırıyoruz, bu sefer daha düzenli bir format ile
+
+/*
+
 echo '<pre>';
-print_r($Example->Earth());
+print_r($data);
+echo '</pre>';
+
+*/
+?>
